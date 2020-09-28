@@ -2,14 +2,17 @@
  * @Description: 组件模板
  * @Date: 2020-09-29 01:33:58 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-09-29 03:00:56 +0800
+ * @LastEditTime: 2020-09-29 03:18:49 +0800
  * @LastEditors: JackChouMine
 -->
 <div class="stock-container">
   <div class="name">
-    <!-- 插值语法 -->
+    <!-- 插值语法 {{JS表达式}} -->
     <h3>{{name}}</h3>
     - <h4>({{code}})</h4>
   </div>
-  <div class="price">$ {{price+10}}</div>
+  <!-- 属性绑定语法 [dom属性] = "表达式" 不会覆盖现有的class -->
+  <div class="price" [class]="positiveChange?'positive':'negative'">$ {{price+10}}</div>
+  <!-- 使用(event) = "函数调用" -->
+  <button (click)="toggleFavorite($event,'otherParam')" [disabled]="isFavorite">{{isFavorite?'已经购入':"购入"}}</button>
 </div>
