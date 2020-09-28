@@ -3,6 +3,11 @@
   "rulesDirectory": [
     "codelyzer"
   ],
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "enableIvy": false
+  },
   "rules": {
     "align": {
       "options": [
