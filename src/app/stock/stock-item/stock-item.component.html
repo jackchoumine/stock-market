@@ -2,7 +2,7 @@
  * @Description: 组件模板
  * @Date: 2020-09-29 01:33:58 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-09-29 03:29:11 +0800
+ * @LastEditTime: 2020-10-03 15:51:00 +0800
  * @LastEditors: JackChouMine
 -->
 <div class="stock-container">
@@ -12,7 +12,7 @@
     - <h4>({{stock.code}})</h4>
   </div>
   <!-- 属性绑定语法 [dom属性] = "表达式" 不会覆盖现有的class -->
-  <div class="price" [class]="stock.positiveChange?'positive':'negative'">$ {{stock.price+10}}</div>
+  <div class="price" [class]="stock.isPositiveChange?'positive':'negative'">$ {{stock.price+10}}</div>
   <!-- 使用(event) = "函数调用" -->
   <button (click)="toggleFavorite($event,'otherParam')"
     [disabled]="stock.isFavorite">{{stock.isFavorite?'已经购入':"购入"}}</button>
