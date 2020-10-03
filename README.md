@@ -265,3 +265,125 @@ export class AppComponent { // 组件类，包含成员和函数
 - 呈现数据；
 - 处理组件的事件。
 
+### 总结
+
+ng 项目的文件组织方式和相关配置。
+
+## 创建组件
+
+用 `ng g component file/component-name` 可创建一个组件，file 指定组件的文件，不指定文件夹，会在 app 文件里创建，component-name 是组件名字。
+
+`ng g` 是 `ng generate` 的缩写，可创建组件、`angular元素`:接口、服务、模块等；
+
+执行该命令，会生成组件定义文件（ts文件）、模板文件、样式文件和单元测试文件，同时还会自动导入到主模块中，应用就能识别它了。
+导入主模块，然后在 declarations 中声明。
+
+> 以上过程都可手动完成。
+
+创建组件时，遵循一些惯例：
+- 文件名以组件名开头，后面是元素类型，最后是扩展名。
+
+比如 `stock-item.component.ts`，这样方便我们队文件进行分组和识别。
+
+我们定义好的组件：
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { Stock } from '../../model/stock';
+@Component({
+  selector: 'app-stock-item',
+  templateUrl: './stock-item.component.html',
+  styleUrls: ['./stock-item.component.scss']
+})
+export class StockItemComponent implements OnInit {
+  // TODO 把数据封装到一个模型类里，方便集中管理
+  // 事件处理函数还是定义在组件中
+  public stock: Stock;
+  constructor() {
+    console.log('hello constructor');
+  }
+
+  ngOnInit(): void {
+    console.log('OnInit');
+    this.stock = new Stock('Test Stock Company', 'TSC', 86, 90);
+  }
+  // tslint:disable-next-line: typedef
+  toggleFavorite(event, param) {
+    console.log('用户点击了', event);
+    console.log('函数参数', param);
+    this.stock.isFavorite = !this.stock.isFavorite;
+  }
+}
+```
+
+`selector: 'app-stock-item'` 组件使用的选择器（自定义标签）,注意`app-`，这是组件前缀，ng 自动添加的，除非里另外指定名字。
+
+如何指定？
+
+```ts
+export class StockItemComponent implements OnInit {}
+```
+`StockItemComponent` 类实现 `OnInit` 接口。
+
+组件有一些生命周期函数，在特定时期执行某些操作，比如初始化、视图被呈现、销毁等。
+
+在组件创建和 data 字段都被初始化之后，`OnInit` 函数执行，一般在此函数中做初始化工作，这样容易测试其余功能，而不是每次都触发初始化。
+
+`ngOnInit` -- 当你想进入组件的初始化阶段，需要实现`OnInit` 接口，然后在组件中实现`ngOnInit`函数，就可以在该函数中执行初始化工作了。
+
+`成员变量` -- 组件的状态。我们将组件的数据封装成一个独立的类，并在 `ngOnInit` 进行创建一个实例。
+
+```ts
+this.stock = new Stock('Test Stock Company', 'TSC', 86, 90);
+```
+
+### 组件的数据绑定
+
+使用`{{}}`插值语法绑定标签的内容，即设置 `textContent` 属性？
+
+`[]` 绑定 DOM 属性，`[class]="stock.isPositiveChange?'positive':'negative'"`，这样淡定的类不会覆盖原来的类，而是追加一个类。
+
+> HTML 属性 和 DOM 属性的区别？
+
+DOM 属性和 HTML 属性有交集，比如 HTML ID 直接映射到 DOM 的 ID，但有的属性只存在两者之一，比如 `defaultValue` 只存在 input DOM 中。
+
+HTML 属性往往做 DOM 元素的初始化，初始化之后，HTML 的渲染效果，是 DOM 控制的。
+
+> ng 绑定是 DOM 属性，而不是 HTML 属性。
+
+`<input type="text" value="foo" />` 这个 html input 元素，会初始化一个 DOM 元素，即 input DOM 的 value 为 foo. 在输入 `bar`，
+
+`input.getAttribute('value')` 的值为 foo，是 HTML 中的初始化值，而 `input.value` 会返回 `bar`，这是 DOM 元素中的值，当前值。
+
+### 组件处理事件
+
+事件是组件和用户交互的主要方式，组件处理事件必不可少。事件处理语法：
+
+```ts
+ (eventName) = "handleCall([$event[,otherParams]])"
+```
+`$event`可获取到触发的**事件对象**，`$` 不能省略，是可选的，还可添加其他参数。
+在类中实现该函数。
+
+```html
+<button (click)="toggleFavorite($event,'otherParam')">{{stock.isFavorite?'已经购入':"购入"}}</button>
+```
+
+```ts
+  toggleFavorite(event, param) {
+    console.log('用户点击了', event);
+    console.log('函数参数', param);
+    this.stock.isFavorite = !this.stock.isFavorite;
+  }
+```
+> 如何阻止默认行为？
+```ts
+event.preventDefault();
+```
+同样，阻止事件冒泡 `event.stopPropagation();`
+
+### 总结
+
+学习了组件的组织方式、插值语法、DOM 属性绑定和事件绑定。
+
+

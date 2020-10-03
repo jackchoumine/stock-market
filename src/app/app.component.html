@@ -2,10 +2,10 @@
  * @Description: 根组件模板
  * @Date: 2020-09-28 03:04:08 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-09-29 02:32:00 +0800
+ * @LastEditTime: 2020-10-03 17:55:53 +0800
  * @LastEditors: JackChouMine
 -->
-<div style="text-align: center;">
+<div style="text-align: center;" (click)="stopPropagation($event,'事件冒泡了')">
   <h1>
     hello {{title}}
   </h1>

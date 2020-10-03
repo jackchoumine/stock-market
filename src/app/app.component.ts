@@ -2,7 +2,7 @@
  * @Description: 根组件
  * @Date: 2020-09-28 03:04:08 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-09-29 02:33:30 +0800
+ * @LastEditTime: 2020-10-03 17:56:53 +0800
  * @LastEditors: JackChouMine
  */
 import { Component } from '@angular/core';
@@ -15,4 +15,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'stock-market';
   author = 'jackChouMine';
+  // tslint:disable-next-line: typedef
+  stopPropagation(event, params) {
+    console.log(event);
+    console.log(params);
+  }
 }
