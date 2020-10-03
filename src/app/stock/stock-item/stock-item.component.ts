@@ -1,9 +1,8 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 /*
  * @Description: 股票组件
  * @Date: 2020-09-29 01:33:58 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-09-29 03:30:48 +0800
+ * @LastEditTime: 2020-10-03 16:44:13 +0800
  * @LastEditors: JackChouMine
  */
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +10,7 @@ import { Stock } from '../../model/stock';
 @Component({
   selector: 'app-stock-item',
   templateUrl: './stock-item.component.html',
-  styleUrls: ['./stock-item.component.scss']
+  styleUrls: ['./stock-item.component.scss',]
 })
 export class StockItemComponent implements OnInit {
   // TODO 把数据封装到一个模型类里，方便集中管理

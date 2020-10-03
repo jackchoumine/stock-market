@@ -145,7 +145,7 @@ F:.
 
 运行 `ng serve` 时，依赖库、程序代码、样式文件等应用资源会被打包成一个文件，动态插入到根 html 中，在浏览中访问 html，就和普通的页面一样。
 
-**main.ts**
+**main.ts** -- 项目入口
 
 ```ts
 import { enableProdMode } from '@angular/core'; // 是 es6 语法导入依赖
@@ -164,4 +164,104 @@ platformBrowserDynamic().bootstrapModule(AppModule)
 ```
 
 `main.ts` 是程序的入口，识别项目启动时加载的模块，还可修改项目级别的配置，类似 vue 中的 `main.js`。
+
+
+`app.modules.ts` 主模块
+
+```ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { StockItemComponent } from './stock/stock-item/stock-item.component';
+
+// TS 注解，将该定义为一个 ng 模块
+@NgModule({
+  declarations: [ // 声明用到的组件和指令
+    AppComponent,
+    StockItemComponent
+  ],
+  imports: [ // 用到的其他模块
+    BrowserModule, 
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent] // 启动项目时的入口组件
+})
+export class AppModule { }
+```
+
+主模块是应用程序特定代码开始的地方，是应用的核心配置，加载依赖、声明应用用到的组件、标记根组件等，都在这里配置。
+
+> declarations 定义了该模块中允许在 html 里使用的组件。任何组件都必须在使用前声明。
+
+> imports 导入用到的其他库，从而使用这些库中功能。
+
+> bootstrap 指定应用的根组件，如果没有根组件，应用不会启动。
+
+<!-- TODO 可以用多个根组件吗？设置多个根组件，页面上并没有显示第二个根组件。 -->
+
+<!-- TODO 模块和组件的区别？ -->
+
+
+**app.component.ts** 根组件
+
+```ts
+import { Component } from '@angular/core';
+
+// 装饰器，指定如何转为 HTML 代码
+@Component({
+  selector: 'app-root', // 组件标签，使用组件时的标签名字
+  templateUrl: './app.component.html', // 组件模板
+  styleUrls: ['./app.component.scss']// 组件样式，使用 scss 文件
+})
+export class AppComponent { // 组件类，包含成员和函数
+  title = 'stock-market';
+  author = 'jackChouMine';
+}
+```
+
+`selector`，指定使用组件时用的标签；
+`templateUrl`，指定组件的 html 代码，类似 vue 中的 template，可使用行内模板。
+
+```ts
+@Component({
+  template: `<div style="text-align: center;"></div>`,
+})
+```
+
+模板内容：
+
+```html
+<div style="text-align: center;">
+  <h1>
+    hello {{title}}
+  </h1>
+  <h2>my name is {{author}}</h2>
+  <app-stock-item></app-stock-item>
+</div>
+```
+`{{}}` 是插入语法，用来绑定组件中的数据，内部是一个 JS 表达式。
+
+`<app-stock-item></app-stock-item>` 是我们定义的子组件，稍后会是创建的方法。
+
+`styleUrls`，指定组件样式，不用担心组件之间的样式相互影响。
+
+> 指定多个样式文件，属性冲突时，优先级是怎样的？
+
+<!-- TODO  -->
+会按照 CSS 样式的层叠特性应用到元素上。
+
+组件类---定义组件的数据和函数。
+```ts
+export class AppComponent { // 组件类，包含成员和函数
+  title = 'stock-market';
+  author = 'jackChouMine';
+}
+```
+
+组件类有双重职责：
+- 呈现数据；
+- 处理组件的事件。
 
