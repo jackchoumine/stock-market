@@ -2,7 +2,7 @@
  * @Description: 股票组件
  * @Date: 2020-09-29 01:33:58 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-10-03 18:00:32 +0800
+ * @LastEditTime: 2020-10-03 18:23:01 +0800
  * @LastEditors: JackChouMine
  */
 import { Component, OnInit } from '@angular/core';
@@ -23,6 +23,16 @@ export class StockItemComponent implements OnInit {
   ngOnInit(): void {
     console.log('OnInit');
     this.stock = new Stock('Test Stock Company', 'TSC', 86, 90);
+  }
+  // tslint:disable-next-line: typedef
+  reduce() {
+    this.stock.previousPrice = this.stock.price;
+    this.stock.price = (this.stock.price - 5);
+  }
+  // tslint:disable-next-line: typedef
+  add() {
+    this.stock.previousPrice = this.stock.price;
+    this.stock.price = (this.stock.price + 5);
   }
   // tslint:disable-next-line: typedef
   toggleFavorite(event, param) {

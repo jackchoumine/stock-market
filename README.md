@@ -281,6 +281,7 @@ ng 项目的文件组织方式和相关配置。
 > 以上过程都可手动完成。
 
 创建组件时，遵循一些惯例：
+
 - 文件名以组件名开头，后面是元素类型，最后是扩展名。
 
 比如 `stock-item.component.ts`，这样方便我们队文件进行分组和识别。
@@ -336,12 +337,15 @@ export class StockItemComponent implements OnInit {}
 ```ts
 this.stock = new Stock('Test Stock Company', 'TSC', 86, 90);
 ```
+> 数据之间有依赖关系，如何实现像 vue 中的计算属性？
 
 ### 组件的数据绑定
 
 使用`{{}}`插值语法绑定标签的内容，即设置 `textContent` 属性？
 
 `[]` 绑定 DOM 属性，`[class]="stock.isPositiveChange?'positive':'negative'"`，这样淡定的类不会覆盖原来的类，而是追加一个类。
+
+`{{}}` 、`[]` 是组件到 UI 模板的单向绑定。
 
 > HTML 属性 和 DOM 属性的区别？
 
@@ -364,6 +368,8 @@ HTML 属性往往做 DOM 元素的初始化，初始化之后，HTML 的渲染�
 ```
 `$event`可获取到触发的**事件对象**，`$` 不能省略，是可选的，还可添加其他参数。
 在类中实现该函数。
+
+> 容易犯的错误是**不加括号**。
 
 ```html
 <button (click)="toggleFavorite($event,'otherParam')">{{stock.isFavorite?'已经购入':"购入"}}</button>
