@@ -392,4 +392,19 @@ event.preventDefault();
 
 学习了组件的组织方式、插值语法、DOM 属性绑定和事件绑定。
 
+## 表单处理
+
+表单接收用户输入，UI更新，同时希望组件内部的数据也跟着变化，就要实现双向绑定。
+
+ng 实现双向绑定的方式有两种：① 事件处理 ② 内置指令 `@ngModel`
+
+1. 事件处理
+
+思路是监听表单事件，获取到该元素，然后把用该元素的值更新组件中的状态。
+
+```html
+ <input type="text" placeholder="请输入股票名字" [value]="stock.name" (input)="stock.name=$event.target.value">
+```
+
+2. 内置指令 ngModel
 
