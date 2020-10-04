@@ -2,22 +2,54 @@
  * @Description: 模板驱动表单
  * @Date: 2020-10-04 18:25:02 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-10-04 20:15:40 +0800
+ * @LastEditTime: 2020-10-05 01:36:17 +0800
  * @LastEditors: JackChouMine
 -->
 <p [textContent]="stock.name"></p>
 <h2>{{stock.name}}</h2>
 <h2 [innerHtml]="stock.name"></h2>
 <div class="form-group">
-  <form>
-    <div>
-      <!-- <input type="text" placeholder="请输入股票名字" [value]="stock.name" (input)="stock.name=$event.target.value"> -->
-      <!-- <input type="text" placeholder="请输入股票名字" name="stockName" [ngModel]="stock.name"
-        (ngModelChange)="stock.name = $event"> -->
+  <form (ngSubmit)="createStock()">
+    <div class="stock-name">
+      <label>股票名字</label>
       <input type="text" placeholder="请输入股票名字" name="stockName" [(ngModel)]="stock.name">
     </div>
+    <div class="stock-code">
+      <label>股票代码</label>
+      <input type="text" placeholder="请输入股票价格" name="stockCode" [ngModel]="stock.code"
+        (ngModelChange)="stock.code = $event">
+    </div>
+    <div class="stock-price">
+      <label>股票价格</label>
+      <input type="text" placeholder="请输入股票价格" name="stockPrice" [ngModel]="stock.price"
+        (ngModelChange)="setStockPrice($event)">
+    </div>
+    <div class="stock-exchange">
+      <!-- <div>
+        <input type="radio" name="stockExchange" [(ngModel)]="stock.exchange" value="NYSE">
+        <label>NYSE</label>
+      </div>
+      <div>
+        <input type="radio" name="stockExchange" [(ngModel)]="stock.exchange" value="NASDAQ">
+        <label>NASDAQ</label>
+      </div>
+      <div>
+        <input type="radio" name="stockExchange" [(ngModel)]="stock.exchange" value="OTHER">
+        <label>OTHER</label>
+      </div> -->
+      <div>
+        <select name="stockExchange" [(ngModel)]="stock.exchange">
+          <option *ngFor="let exchange of exchanges" [ngValue]="exchange">{{exchange}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="stock-confirm">
+      <input type="checkbox" name="stockConfirm" [(ngModel)]="confirm">
+      确认以上信息是正确的
+    </div>
+    <button [disabled]="!confirm" type="submit">创建</button>
   </form>
-  <button (click)="stock.name='test'">重置</button>
+  <h4>股票的名字是{{stock|json}}</h4>
 </div>
 <style>
   p {
