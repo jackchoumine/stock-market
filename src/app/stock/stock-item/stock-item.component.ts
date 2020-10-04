@@ -2,7 +2,7 @@
  * @Description: 股票组件
  * @Date: 2020-09-29 01:33:58 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-10-03 18:23:01 +0800
+ * @LastEditTime: 2020-10-04 18:34:59 +0800
  * @LastEditors: JackChouMine
  */
 import { Component, OnInit } from '@angular/core';
