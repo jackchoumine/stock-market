@@ -405,6 +405,38 @@ ng 实现双向绑定的方式有两种：① 事件处理 ② 内置指令 `@ng
 ```html
  <input type="text" placeholder="请输入股票名字" [value]="stock.name" (input)="stock.name=$event.target.value">
 ```
+事件实现双向绑定的缺点：
+
+- 需要准确记忆每个表单控件的属性；
+- 记忆表单事件；
+
+不同的表达控件具有不同的属性和事件，无疑是一种记忆负担，为了避免以上缺点，就有了 ngModel 实现双向绑定。
 
 2. 内置指令 ngModel
+
+ngModel 是 input 事件绑定和 value 属性绑定的抽象，使得表单使用起来更加容易。
+
+在`主模块 app.modules.ts` 中导入 `FormsModules` 模块，
+
+```ts
+import { FormsModule } from '@angular/forms';
+```
+
+使用模块：
+
+```ts
+  imports: [
+    FormsModule,
+  ],
+```
+修改模板：
+```html
+<input type="text" placeholder="请输入股票名字" name="stock.name" [ngModel]="stock.name"
+        (ngModelChange)="change($event)">
+```
+三个改变：
+- 在表单控件上设置 `name` 属性，或者 `[ngModelOptions]="{standalone: true}"`
+- 数据绑定 `[ngModel]="stock.name"`,指定了从组件中获取的成员变量
+- 事件绑定 `(ngModelChange)="stock.name = $event"`，`$event` 是用户的输入值，必须是 `$event`。
+
 

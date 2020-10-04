@@ -2,7 +2,7 @@
  * @Description:
  * @Date: 2020-10-04 18:25:02 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-10-04 18:57:15 +0800
+ * @LastEditTime: 2020-10-04 19:50:07 +0800
  * @LastEditors: JackChouMine
  */
 import { Component, OnInit } from '@angular/core';
@@ -21,5 +21,7 @@ export class CreateStockComponent implements OnInit {
   ngOnInit(): void {
     this.stock = new Stock('test', 'MyStock', 100, 90);
   }
-
+  change(name): void {
+    this.stock.name = name;
+  }
 }

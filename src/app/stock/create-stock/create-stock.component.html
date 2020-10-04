@@ -2,7 +2,7 @@
  * @Description: 模板驱动表单
  * @Date: 2020-10-04 18:25:02 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-10-04 18:48:48 +0800
+ * @LastEditTime: 2020-10-04 20:13:20 +0800
  * @LastEditors: JackChouMine
 -->
 <p [textContent]="stock.name"></p>
@@ -11,7 +11,9 @@
 <div class="form-group">
   <form>
     <div>
-      <input type="text" placeholder="请输入股票名字" [value]="stock.name" (input)="stock.name=$event.target.value">
+      <!-- <input type="text" placeholder="请输入股票名字" [value]="stock.name" (input)="stock.name=$event.target.value"> -->
+      <input type="text" placeholder="请输入股票名字" name="stockName" [ngModel]="stock.name"
+        (ngModelChange)="stock.name = $event">
     </div>
   </form>
   <button (click)="stock.name='test'">重置</button>
