@@ -431,12 +431,31 @@ import { FormsModule } from '@angular/forms';
 ```
 修改模板：
 ```html
-<input type="text" placeholder="请输入股票名字" name="stock.name" [ngModel]="stock.name"
+<input type="text" placeholder="请输入股票名字" name="stockName" [ngModel]="stock.name"
         (ngModelChange)="change($event)">
 ```
 三个改变：
 - 在表单控件上设置 `name` 属性，或者 `[ngModelOptions]="{standalone: true}"`
 - 数据绑定 `[ngModel]="stock.name"`,指定了从组件中获取的成员变量
 - 事件绑定 `(ngModelChange)="stock.name = $event"`，`$event` 是用户的输入值，必须是 `$event`。
+
+可能需要在修改成员变量之前做一些其他操作，比如`请求服务器数据`，可以事件绑定的函数写到组件类里面：
+```ts
+  change(name): void {
+    // do something else
+    this.stock.name = name;
+  }
+```
+
+`ngModel` 香蕉箱写法：
+```html
+<input type="text" placeholder="请输入股票名字" name="stockName" [(ngModel)]="stock.name">
+```
+> 香蕉箱语法是`[]`包裹`()`，这点容易混淆。ng 团队认为 `()`像两条香蕉，`[]`像箱子，`[()]`好像香蕉放在箱子里，故称为香蕉箱语法（banana-in-a-box）。
+
+> 何时使用两个绑定的展开语法？
+
+> 香蕉语法只能绑定数据，不能绑定数据之前做额外的操作，比如想要把用户输入转为大小，就得使用展开语法了。
+
 
 
