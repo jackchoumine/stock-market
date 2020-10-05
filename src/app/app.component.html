@@ -2,13 +2,50 @@
  * @Description: 根组件模板
  * @Date: 2020-09-28 03:04:08 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-10-04 18:33:25 +0800
+ * @LastEditTime: 2020-10-05 17:23:56 +0800
  * @LastEditors: JackChouMine
 -->
 <div style="text-align: center;">
-  <h1>
+  <h1 *ngIf="showTitle">
     hello {{title}}
   </h1>
+  <hr>
+  <ul [ngSwitch]="howAreYou">
+    <li *ngSwitchCase="'great'">great</li>
+    <li *ngSwitchCase="'good'">good</li>
+    <li *ngSwitchCase="'notBad'">notBad</li>
+    <li *ngSwitchCase="'bad'">bad</li>
+    <li *ngSwitchDefault>well</li>
+  </ul>
+  <hr>
+  <!-- <ul>
+    <li *ngFor="let item of list;let i = index;trackBy:trackByMethod">
+      {{i}} -- {{item.tech}} -- {{trackBy}}
+    </li>
+  </ul> -->
+  <ul>
+    <ng-container *ngFor="let item of list">
+      <li *ngIf="item.isGood">
+        {{item.tech}}
+      </li>
+    </ng-container>
+  </ul>
+  <!-- 这样依然会渲染所有元素 -->
+  <ul>
+    <li *ngFor="let item of list">
+      <div *ngIf="item.isGood">
+        {{item.tech}}
+      </div>
+    </li>
+  </ul>
+  <!-- ngV4 之前支持这种写法 -->
+  <!-- <ul>
+    <ng-template *ngFor="let item of list">
+      <li *ngIf="item.isGood">
+        {{item.tech}}
+      </li>
+    </ng-template>
+  </ul> -->
   <h2>my name is {{author}}</h2>
   <app-stock-item></app-stock-item>
   <app-create-stock></app-create-stock>
