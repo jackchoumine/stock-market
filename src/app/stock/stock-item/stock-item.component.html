@@ -2,7 +2,7 @@
  * @Description: 组件模板
  * @Date: 2020-09-29 01:33:58 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-10-03 18:20:44 +0800
+ * @LastEditTime: 2020-10-05 13:38:01 +0800
  * @LastEditors: JackChouMine
 -->
 <div class="stock-container">
@@ -14,7 +14,8 @@
   <!-- 属性绑定语法 [dom属性] = "表达式" 不会覆盖现有的class -->
   <div>
     <button (click)="reduce()">-</button>
-    <span class="price" [class]="stock.isPositiveChange?'positive':'negative'">
+    <!-- [class]="stock.isPositiveChange?positive:'negative'" -->
+    <span class="price" [ngClass]="stockClass">
       $ {{stock.price}}
     </span>
     <button (click)="add()">+</button>
