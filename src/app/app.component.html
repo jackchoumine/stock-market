@@ -2,7 +2,7 @@
  * @Description: 根组件模板
  * @Date: 2020-09-28 03:04:08 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-11-22 00:11:55
+ * @LastEditTime: 2020-11-22 01:19:32
  * @LastEditors: JackChouMine
 -->
 <div style="text-align: center;" class="app">
@@ -23,13 +23,6 @@
       {{i}} -- {{item.tech}} -- {{trackBy}}
     </li>
   </ul> -->
-  <ul>
-    <ng-container *ngFor="let item of list">
-      <li *ngIf="item.isGood">
-        {{item.tech}}
-      </li>
-    </ng-container>
-  </ul>
   <!-- 这样依然会渲染所有元素 -->
   <ul>
     <li *ngFor="let item of list">
@@ -50,7 +43,20 @@
   <app-stock-item></app-stock-item>
   <app-create-stock></app-create-stock>
   <h2>组件输入和输出</h2>
+  <ul>
+    <ng-container *ngFor="let item of list">
+      <li *ngIf="item.isGood">
+        {{item.tech}}
+      </li>
+    </ng-container>
+  </ul>
+  <div>{{jack.name}}</div>
   <div>{{jack.age}}</div>
-  <app-input-output [title]="title" [person]="jack" (eventName)="handler($event)">
+  <button (click)="changeAge()">修改年纪</button>
+  <button (click)="changePerson()">修改person</button>
+  <button (click)="changeItemOfList()">修改list的元素</button>
+  <button (click)="changeList()">修改list</button>
+  <h2>子组件</h2>
+  <app-input-output [tech]="list" [title]="title" [person]="jack" (eventName)="handler($event)">
   </app-input-output>
 </div>

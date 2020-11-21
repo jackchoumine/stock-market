@@ -2,7 +2,7 @@
  * @Description: 根组件
  * @Date: 2020-09-28 03:04:08 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-11-21 23:48:10
+ * @LastEditTime: 2020-11-22 01:33:07
  * @LastEditors: JackChouMine
  */
 import { Component, ViewEncapsulation, OnInit} from '@angular/core'
@@ -39,5 +39,20 @@ export class AppComponent implements OnInit{
     console.log('监听到自定义事件')
     console.log(title, person)
     this.title = title
+    this.jack = person
+  }
+  changeAge(): void{
+    this.jack.age += 10
+  }
+  changePerson(): void{
+    this.jack = {name: '杰克大爷', age: 80}
+  }
+  changeItemOfList(): void{
+    this.list[2].isGood = !this.list[2].isGood // Default 父子组件都能更新 OnPush 子组件不更新
+  }
+  changeList(): void{
+    this.list  = []// Default OnPush 父子组件都能更新
+    // this.list.push({tech: 'node', isGood: true})// Default 父子组件都能更新 OnPush 子组件不更新
+    // this.list[2] = {tech: 'node', isGood: true}// Default 父子组件都能更新 OnPush 子组件不更新
   }
 }
