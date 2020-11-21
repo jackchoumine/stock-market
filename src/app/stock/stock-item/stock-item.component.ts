@@ -2,7 +2,7 @@
  * @Description: 股票组件
  * @Date: 2020-09-29 01:33:58 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-11-21 19:28:05
+ * @LastEditTime: 2020-11-21 21:38:20
  * @LastEditors: JackChouMine
  */
 import { Component, OnInit } from '@angular/core'
@@ -11,6 +11,8 @@ import { Stock } from '../../model/stock'
   selector: 'app-stock-item',
   templateUrl: './stock-item.component.html',
   styleUrls: ['./stock-item.component.scss'],
+  preserveWhitespaces: true, // 模板编译后删除空白
+  interpolation: ['[', ']'], // 改写插值表达式的开始符号和结束符号，不能使用 {}
 })
 export class StockItemComponent implements OnInit {
   // TODO 把数据封装到一个模型类里，方便集中管理
