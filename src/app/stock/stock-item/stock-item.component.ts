@@ -1,9 +1,8 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 /*
  * @Description: 股票组件
  * @Date: 2020-09-29 01:33:58 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-10-05 15:59:56 +0800
+ * @LastEditTime: 2020-11-21 16:51:55
  * @LastEditors: JackChouMine
  */
 import { Component, OnInit } from '@angular/core';
