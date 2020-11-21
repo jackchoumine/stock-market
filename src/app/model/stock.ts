@@ -6,17 +6,17 @@
  * @LastEditors: JackChouMine
  */
 export class Stock {
-  isFavorite = false;
+  isFavorite = false
   constructor(
     public name: string,
     public code: string,
     public price: number,
     public previousPrice: number,
-    public exchange: string = 'NYSE', // 交易所
+    public exchange: string = 'NYSE' // 交易所
   ) { }
 
   isPositiveChange(): boolean {
-    console.log('这是一个函数吗');
-    return this.price >= this.previousPrice;
+    console.log('这是一个函数吗')
+    return this.price >= this.previousPrice
   }
 }
