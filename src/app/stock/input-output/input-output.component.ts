@@ -2,7 +2,7 @@
  * @Description:
  * @Date: 2020-11-21 22:22:16
  * @Author: JackChouMine
- * @LastEditTime: 2020-11-21 23:46:55
+ * @LastEditTime: 2020-11-22 00:12:54
  * @LastEditors: JackChouMine
  */
 import { Component, OnInit, Input , Output, EventEmitter} from '@angular/core'
@@ -28,6 +28,7 @@ export class InputOutputComponent {
  private age = 20
  onEventEmitter(event, hello): void{
    // 调用 emit 触发事件
-   this.eventName.emit({title: ++this.age + '', person: this.person})
+   this.person.age = ++this.age
+   this.eventName.emit({title: this.age + '', person: this.person})
  }
 }

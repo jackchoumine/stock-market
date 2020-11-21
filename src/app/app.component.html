@@ -2,7 +2,7 @@
  * @Description: 根组件模板
  * @Date: 2020-09-28 03:04:08 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-11-21 23:29:45
+ * @LastEditTime: 2020-11-22 00:11:55
  * @LastEditors: JackChouMine
 -->
 <div style="text-align: center;" class="app">
@@ -50,6 +50,7 @@
   <app-stock-item></app-stock-item>
   <app-create-stock></app-create-stock>
   <h2>组件输入和输出</h2>
+  <div>{{jack.age}}</div>
   <app-input-output [title]="title" [person]="jack" (eventName)="handler($event)">
   </app-input-output>
 </div>
