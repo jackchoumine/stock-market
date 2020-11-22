@@ -16,18 +16,18 @@ import { CreateStockComponent } from './stock/create-stock/create-stock.componen
 import { FormsModule } from '@angular/forms'
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    StockItemComponent,
-    CreateStockComponent,
-    InputOutputComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent], // 如何设置多个根组件？
+	declarations: [
+		AppComponent,
+		StockItemComponent,
+		CreateStockComponent,
+		InputOutputComponent,
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule,
+	],
+	providers: [],
+	bootstrap: [AppComponent], // 如何设置多个根组件？
 })
 export class AppModule { }
