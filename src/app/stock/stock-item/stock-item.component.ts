@@ -2,7 +2,7 @@
  * @Description: 股票组件
  * @Date: 2020-09-29 01:33:58 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-11-21 21:38:20
+ * @LastEditTime: 2020-11-22 15:47:14
  * @LastEditors: JackChouMine
  */
 import { Component, OnInit } from '@angular/core'
@@ -22,11 +22,9 @@ export class StockItemComponent implements OnInit {
 	public nameStyle: object
 	public positive = 'positive'
 	constructor() {
-		console.log('hello constructor')
 	}
 
 	ngOnInit(): void {
-		console.log('OnInit')
 		this.stock = new Stock('Test Stock Company', 'TSC', 86, 90)
 		// 初始化
 		const diff = (this.stock.price / this.stock.previousPrice) - 1

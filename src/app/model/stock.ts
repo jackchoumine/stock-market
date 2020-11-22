@@ -2,7 +2,7 @@
  * @Description: 股票模型
  * @Date: 2020-09-29 03:20:45 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-10-04 20:58:38 +0800
+ * @LastEditTime: 2020-11-22 15:46:19
  * @LastEditors: JackChouMine
  */
 export class Stock {
@@ -16,7 +16,6 @@ export class Stock {
 	) { }
 
 	isPositiveChange(): boolean {
-		console.log('这是一个函数吗')
 		return this.price >= this.previousPrice
 	}
 }
