@@ -2,10 +2,13 @@
  * @Description:
  * @Date: 2020-11-21 22:22:16
  * @Author: JackChouMine
- * @LastEditTime: 2020-11-22 01:45:18
+ * @LastEditTime: 2020-11-22 17:56:11
  * @LastEditors: JackChouMine
  */
 import { Component, OnInit, Input , Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core'
+import {  OnChanges, SimpleChanges,  DoCheck,
+AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy} from '@angular/core'
+// tslint:disable-next-line:no-conflicting-lifecycle
 @Component({
 	selector: 'app-input-output',
 	template: `
@@ -32,7 +35,8 @@ import { Component, OnInit, Input , Output, EventEmitter, ChangeDetectionStrateg
 	changeDetection: ChangeDetectionStrategy.OnPush, // 父组件修改复杂输入的属性，子组件不会更新
 	// Default OnPush 子组件修改属性，父子组件都更新 子组件重置输入，父组件不会更新
 })
-export class InputOutputComponent implements OnInit {
+export class InputOutputComponent implements OnChanges, OnInit, DoCheck, AfterContentInit,
+AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
  @Input() private tech: any
  @Input() public title: string
  @Input() public person: {name: string, age: number}
@@ -40,10 +44,33 @@ export class InputOutputComponent implements OnInit {
  private age = 20
  constructor(){
 		this.eventName = new EventEmitter<{title: string, person: {name: string, age: number}}>() // 初始化事件对象
+		console.log('子组件 类初始化')
  }
- ngOnInit(): void{
-		console.log(this.tech)
- }
+	ngOnChanges(changes: SimpleChanges): void {
+			console.log('子组件 ngOnChanges')
+			console.log('参数', changes)
+		}
+	ngOnInit(): void{
+			console.log('子组件 ngOnInit')
+	}
+		ngDoCheck(): void{
+			console.log('子组件 ngDoCheck')
+		}
+		ngAfterViewInit(): void{
+			console.log('子组件 ngAfterViewInit')
+		}
+		ngAfterViewChecked(): void{
+			console.log('子组件 ngAfterViewChecked')
+		}
+		ngAfterContentInit(): void{
+			console.log('子组件 ngAfterContentInit')
+		}
+		ngAfterContentChecked(): void{
+			console.log('子组件 ngAfterContentChecked')
+		}
+		ngOnDestroy(): void{
+			console.log('子组件 ngDoDestroy')
+		}
  onEventEmitter(event, hello): void{
 		// 调用 emit 触发事件
 		this.person.age = ++this.age

@@ -2,11 +2,11 @@
  * @Description: 根组件
  * @Date: 2020-09-28 03:04:08 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-11-22 15:37:19
+ * @LastEditTime: 2020-11-22 17:52:22
  * @LastEditors: JackChouMine
  */
-import { Component, ViewEncapsulation, OnChanges, OnInit, DoCheck,
-AfterContentInit, AfterContentChecked AfterViewInit, AfterViewChecked, OnDestroy} from '@angular/core'
+import { Component, ViewEncapsulation, OnChanges, SimpleChanges, OnInit, DoCheck,
+AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy} from '@angular/core'
 
 // tslint:disable-next-line:no-conflicting-lifecycle
 @Component({
@@ -21,22 +21,28 @@ AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
 	author = 'jackChouMine'
 	public showTitle = true
 	public howAreYou = ''
-	public list = [
+	public list = []
+	public jack = {name: 'jack', age: 26}
+	constructor(){
+		this.title = '这是初始化函数'
+		this.list = [
 		{ tech: 'jquery', isGood: true },
 		{ tech: 'angular', isGood: true },
 		{ tech: 'react', isGood: false },
-		{ tech: 'vue', isGood: false }]
-		public jack = {name: 'jack', age: 26}
-		ngOnChanges(changes: SimpleChanges): void {
+		{ tech: 'vue', isGood: false },
+	]
+		console.log('父组件 类初始化')
+	}
+	ngOnChanges(changes: SimpleChanges): void {
 			console.log('父组件 ngOnChanges')
 			console.log('参数', changes)
 		}
-		ngOnInit(): void{
+	ngOnInit(): void{
 			console.log('父组件 ngOnInit')
 			this.title = '这是来自父组件的数据'
-		}
-		ngDoChecked(): void{
-			console.log('父组件 ngOnInit')
+	}
+		ngDoCheck(): void{
+			console.log('父组件 ngDoCheck')
 			this.title = '这是来自父组件的数据'
 		}
 		ngAfterViewInit(): void{
@@ -45,13 +51,19 @@ AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
 		ngAfterViewChecked(): void{
 			console.log('父组件 ngAfterViewChecked')
 		}
+		ngAfterContentInit(): void{
+			console.log('父组件 ngAfterContentInit')
+		}
 		ngAfterContentChecked(): void{
 			console.log('父组件 ngAfterContentChecked')
 		}
+		ngOnDestroy(): void{
+			console.log('父组件 ngDoDestroy')
+		}
 		stopPropagation(event, params): void {
-		console.log(event)
-		console.log(params)
-	}
+			console.log(event)
+			console.log(params)
+		}
 	trackByMethod(index, item): number {
 		console.log(index, item)
 		return index + 1 + item
