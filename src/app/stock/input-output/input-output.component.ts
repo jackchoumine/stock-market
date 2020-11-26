@@ -2,7 +2,7 @@
  * @Description:
  * @Date: 2020-11-21 22:22:16
  * @Author: JackChouMine
- * @LastEditTime: 2020-11-22 17:56:11
+ * @LastEditTime: 2020-11-26 17:46:47 +0800
  * @LastEditors: JackChouMine
  */
 import { Component, OnInit, Input , Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core'
@@ -37,10 +37,14 @@ AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestro
 })
 export class InputOutputComponent implements OnChanges, OnInit, DoCheck, AfterContentInit,
 AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
- @Input() private tech: any
- @Input() public title: string
- @Input() public person: {name: string, age: number}
- @Output() private eventName: EventEmitter < {title: string, person: {name: string, age: number}} > // 声明输出的类型：事件
+ @Input()
+ public tech: any
+ @Input()
+ public title: string
+ @Input()
+ public person: {name: string, age: number}
+ @Output()
+ private eventName: EventEmitter < {title: string, person: {name: string, age: number}} > // 声明输出的类型：事件
  private age = 20
  constructor(){
 		this.eventName = new EventEmitter<{title: string, person: {name: string, age: number}}>() // 初始化事件对象
