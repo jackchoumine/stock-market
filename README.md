@@ -51,7 +51,7 @@ typescript: 4.0.3
 
 > 因为版本问题，没有发布 angular 3 ,直接从 angular 2 到 angular 4。
 
-> angular.js 从 2.0 开始，不再叫 angular.js ，也不叫 angular 2、angular 4，就叫 angular。angular 团队计划每 6 个月发布一个大版本。学习 angluar，可不学习 angular.js。
+> angular.js 从 2.0 开始，不再叫 angular.js ，也不叫 angular 2、angular 4，就叫 angular。angular 团队计划每 6 个月发布一个大版本。学习 angular，可不学习 angular.js。
 
 在 angular 的第一个版本中的一些概念比如**数据绑定**、**关注分离**、**依赖注入**的，已经成为 web 框架的通用特性。
 
