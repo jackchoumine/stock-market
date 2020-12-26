@@ -2,8 +2,8 @@
  * @Description: 组件模板
  * @Date: 2020-09-29 01:33:58 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-11-21 21:36:06
- * @LastEditors: JackChouMine
+ * @LastEditTime: 2020-12-27 00:21:23 +0800
+ * @LastEditors: JackChou
 -->
 <div class="stock-container">
   <div class="name">
@@ -20,7 +20,7 @@
     </span>
     <button (click)="add()">+</button>
   </div>
-  <!-- 使用(event) = "函数调用" -->
+  <!-- 使用 (event) = "函数调用" -->
   <button (click)="toggleFavorite($event,'otherParam')"
-    [disabled]="stock.isFavorite">[stock.isFavorite?'已经购入':"购入"]</button>
+    [disabled]="stock.isFavorite">{{stock.isFavorite?'已经购入':"购入"}}</button>
 </div>
