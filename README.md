@@ -166,9 +166,9 @@ platformBrowserDynamic()
   .catch((err) => console.error(err));
 ```
 
-`main.ts` 是应用的入口，识别项目启动时加载的模块，还可修改**项目级别**的配置，类似 vue 中的 `main.js`。
+`main.ts` 是应用的入口，识别项目启动时加载的模块，还可修改**项目级别**的配置，比如 enableProMode()，关闭框架断言和验证，类似 vue 中的 `main.js`。
 
-`app.modules.ts` 主模块，一个应用有且只有一个主模块。
+`app.modules.ts` 主模块，**一个应用有且只有一个主模块**。
 
 ```ts
 import { BrowserModule } from "@angular/platform-browser";
@@ -202,7 +202,9 @@ export class AppModule {}
 
 > imports 导入用到的其他模块，从而使用这些模块中功能：组件、指令等。
 
-> bootstrap 指定应用的根组件，如果没有根组件，应用不会启动。
+> bootstrap 指定应用的**根组件**，如果没有根组件，应用不会启动，因为 ng 不知道在 index.html 中查找什么元素。
+
+> **新增了组件、服务或者模块，通常需要修改根组件。**
 
 <!-- TODO 可以用多个根组件吗？设置多个根组件，页面上并没有显示第二个根组件。 -->
 
@@ -226,7 +228,7 @@ export class AppComponent {
 }
 ```
 
-`selector`，指定使用组件时用的标签；
+`selector`，CSS 选择器，从类到属性都可以，**通常使用标签选择器**；
 `templateUrl`，指定组件的 html 代码，类似 vue 中的 template，可使用行内模板。
 
 ```ts
@@ -257,7 +259,7 @@ export class AppComponent {
 
 会按照 CSS 样式的层叠特性应用到元素上。
 
-组件类---定义组件的数据和函数。
+组件类---定义组件的数据和事件处理函数。
 
 ```ts
 export class AppComponent {
@@ -267,14 +269,14 @@ export class AppComponent {
 }
 ```
 
-组件有双重职责：
+组件类有双重职责：
 
 - 呈现数据；
 - 处理组件的事件。
 
 ### 总结
 
-ng 项目的文件组织方式和相关配置。
+ng 项目的文件组织方式和相关配置。ng 组件是一个具有一些属性和装饰器的类，类封装数据和函数，装饰器指定如何处理 HTML 代码。
 
 ## 创建组件
 
@@ -337,7 +339,7 @@ export class StockItemComponent implements OnInit {} // `StockItemComponent` 类
 
 组件有一些生命周期函数，在特定时期执行某些操作，比如初始化、视图被呈现、销毁等。
 
-在组件创建和 data 字段都被初始化之后，`OnInit` 函数执行，一般在此函数中做初始化工作，这样容易测试其功能，而不是每次都触发初始化。
+在组件创建和 data 字段都被初始化之后，`OnInit` 函数执行，一般在此函数中做初始化工作，这样容易测试其余功能，而不是每次都触发初始化。
 
 `ngOnInit` -- 当你想进入组件的初始化阶段，需要实现 `OnInit` 接口，然后在组件中实现 `ngOnInit` 函数，就可以在该函数中执行初始化工作了。
 
@@ -357,13 +359,13 @@ this.stock = new Stock("Test Stock Company", "TSC", 86, 90);
 
 `[]` 绑定 DOM 属性，`[class]="stock.isPositiveChange?'positive':'negative'"`，这样绑定的类不会覆盖原来的类，而是追加一个类。
 
-`{{}}` 、`[]` 是组件到 UI 模板的单向绑定。
+`{{}}` 、`[]` 是组件到 UI 模板的单向绑定。单向绑定：从组件中读取状态，更新 UI，往往在纯展示性的组件中常见。
 
 > HTML 属性 和 DOM 属性的区别？
 
 DOM 属性和 HTML 属性有交集，比如 HTML ID 直接映射到 DOM 的 ID，但有的属性只存在两者之一，比如 `defaultValue` 只存在 input DOM 中。
 
-HTML 属性往往做 DOM 元素的初始化，初始化之后，HTML 的渲染效果，是 DOM 控制的。
+**HTML 属性往往做 DOM 元素属性的的初始化，初始化之后，HTML 的渲染效果，是 DOM 控制的**。
 
 > ng 绑定是 DOM 属性，而不是 HTML 属性。
 
