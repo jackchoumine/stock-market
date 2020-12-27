@@ -2,8 +2,8 @@
  * @Description: 根组件模板
  * @Date: 2020-09-28 03:04:08 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-11-22 01:19:32
- * @LastEditors: JackChouMine
+ * @LastEditTime: 2020-12-28 01:56:32 +0800
+ * @LastEditors: JackChou
 -->
 <div style="text-align: center;" class="app">
   <h1 *ngIf="showTitle">
@@ -58,5 +58,8 @@
   <button (click)="changeList()">修改list</button>
   <h2>子组件</h2>
   <app-input-output [tech]="list" [title]="title" [person]="jack" (eventName)="handler($event)">
-  </app-input-output>
+	</app-input-output>
+	<h1>表单学习</h1>
+	<app-form-input></app-form-input>
+	<p style="height:200px;"></p>
 </div>
