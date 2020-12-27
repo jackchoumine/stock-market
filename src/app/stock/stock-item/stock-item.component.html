@@ -2,7 +2,7 @@
  * @Description: 组件模板
  * @Date: 2020-09-29 01:33:58 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-12-27 00:21:23 +0800
+ * @LastEditTime: 2020-12-27 23:25:11 +0800
  * @LastEditors: JackChou
 -->
 <div class="stock-container">
@@ -22,5 +22,5 @@
   </div>
   <!-- 使用 (event) = "函数调用" -->
   <button (click)="toggleFavorite($event,'otherParam')"
-    [disabled]="stock.isFavorite">{{stock.isFavorite?'已经购入':"购入"}}</button>
+    [disabled]="stock.isFavorite">[stock.isFavorite?'已经购入':"购入"]</button>
 </div>

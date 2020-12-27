@@ -2,8 +2,8 @@
  * @Description: 股票组件
  * @Date: 2020-09-29 01:33:58 +0800
  * @Author: JackChouMine
- * @LastEditTime: 2020-11-22 15:47:14
- * @LastEditors: JackChouMine
+ * @LastEditTime: 2020-12-27 23:25:54 +0800
+ * @LastEditors: JackChou
  */
 import { Component, OnInit } from '@angular/core'
 import { Stock } from '../../model/stock'
@@ -12,7 +12,7 @@ import { Stock } from '../../model/stock'
 	templateUrl: './stock-item.component.html',
 	styleUrls: ['./stock-item.component.scss'],
 	preserveWhitespaces: true, // 模板编译后删除空白
-	interpolation: ['[', ']'], // 改写插值表达式的开始符号和结束符号，不能使用 {}
+	interpolation: ['[', ']'], // 改写插值表达式的开始符号和结束符号，不能使用 {}，因为 {{ }} 实 ng 默认了的插值符号
 })
 export class StockItemComponent implements OnInit {
 	// TODO 把数据封装到一个模型类里，方便集中管理
